@@ -30,3 +30,25 @@
                         -moz-box-shadow: 0px 3px 0px 6px rgb(33, 198, 0);
                         box-shadow: 0px 3px 0px 6px rgb(33, 198, 0);
                 }
+                
+                
+                FlasshyJS Thing
+                
+                function flash(fEl,colReturn,colBlink,flashInterval,count){
+	var el = document.getElementById(fEl);
+	
+	var cf = window.setInterval(function(){
+		window.setTimeout(function(){
+			el.className = "hub";
+			el.className += " "+colBlink;
+		},flashInterval);
+		window.setTimeout(function(){
+			el.className = "hub";
+			el.className += " "+colReturn;
+		},flashInterval*2);		
+	},flashInterval*2);
+	
+	window.setTimeout(function(){
+		window.clearInterval(cf);
+	},(flashInterval*count)*2);
+}
