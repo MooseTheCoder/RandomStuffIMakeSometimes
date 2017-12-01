@@ -1,5 +1,5 @@
 <?php
-/* the file i use when i need to hault a server for a little bit.
+/* the file i use when i need to hault a server for a little bit.*/
 $link = $_SERVER['HTTP_HOST'];
 $reasons = ['maintenance','optimization'];
 $reason = $reasons[0] . ' & ' . $reasons[1];
