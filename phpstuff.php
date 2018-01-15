@@ -1,3 +1,4 @@
+<?php
 //role based navigation rendering
 function nav($role){
         $e = '';
