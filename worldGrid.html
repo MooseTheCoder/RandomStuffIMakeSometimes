@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>jQuery Controller</title>
+		<script src="jquery.js"></script>
+	</head>
+	<style>
+		body{
+			padding:0px;
+			margin:0px;
+		}
+		td{
+			border:1px solid black; height:100px; width:100px;
+		}
+		.active{
+			background-color:black;
+		}
+	</style>
+	<body>
+		<table id="worldGrid">		
+		</table>
+	</body>
+	<script>
+	function rowInit(rows,rowLength){
+		var currentRow = 0;
+		while(currentRow < rows){
+			currentRowLength = 0;
+			var rowString = '<tr id="i'+currentRow+'">';
+			while(currentRowLength < rowLength){
+				rowString = rowString + '<td id="i'+currentRow+currentRowLength+'"></td>';
+				currentRowLength = currentRowLength + 1;
+			}
+			rowString = rowString + '</tr>';
+			$('#worldGrid').append(rowString);
+			currentRow = currentRow + 1;
+		}
+		$('#i00').addClass('active');
+	}
+	//row init creates rows and controller
+	rowInit(7,7);
+	//
+	var row = 0;
+	var keyPos = 0;
+	function moveActive(rowFrom,keyFrom,keyTo){
+		$('#i'+rowFrom+keyFrom).removeClass('active');
+		$('#i'+row+keyTo).addClass('active');
+		addBlock();
+	}
+	$(document).keydown(function(e){
+		if(e.which == 68){
+			var rowFrom = row;
+			var keyFrom = keyPos;
+			row = row;
+			keyPos = keyPos + 1;
+			moveActive(rowFrom,keyFrom,keyPos);
+		}
+		if(e.which == 87){
+			var rowFrom = row;
+			var keyFrom = keyPos;
+			row = row - 1;
+			keyPos = keyPos;
+			moveActive(rowFrom,keyFrom,keyPos);
+		}
+		if(e.which == 83){
+			var rowFrom = row;
+			var keyFrom = keyPos;
+			row = row + 1;
+			keyPos = keyPos;
+			moveActive(rowFrom,keyFrom,keyPos);
+		}
+		if(e.which == 65){
+			var rowFrom = row;
+			var keyFrom = keyPos;
+			row = row;
+			keyPos = keyPos - 1;
+			moveActive(rowFrom,keyFrom,keyPos);
+		}		
+	});
+	</script>
+</html>
