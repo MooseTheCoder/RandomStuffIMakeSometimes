@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Vue App</title>
+    <meta charset="utf-8">
+    <script src="http://cdn.markamations.com/jquery"></script>
+    <script src="http://cdn.markamations.com/vue"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div id="app">
+      <input type="text" id="task" placeholder="New Task" />
+      <input type="button" value="Add Task" id="add" v-on:click="addData"><br /><br />
+        <table border="0" style="width:500px; text-align:left;" v-if="checkTodoList()">
+          <tr><th>To Do</td></tr>
+            <tr v-for="(todo,index) in todos"><td><p v-bind:val=todo.text>{{todo.text}} <span v-on:click="updateStatus(index)">Status : {{todo.status}} </span><button v-on:click="updateStatus(index)" class="g">&#10003;</button> <button v-on:click="removeTask(index)">&#x2717;</button></p></td></tr>
+        </table>
+    </div
+    <script src="app.js"></script>
+  </body>
+</html>
