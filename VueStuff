@@ -1,0 +1,30 @@
+// Space Moose --> Infinity Scroller for Vue
+Vue.component('spacemoose-infinity', {
+    props : {
+      smiheight:{required : true},
+      smiwidth:{required : true},
+      smidistance:{required : true},
+      smicanload : {type : Boolean, required : true}
+    },
+    data(){
+      return {
+        styles : {
+          width : this.smiwidth,
+          height : this.smiheight,
+          overflowY : 'scroll'
+        }
+      }
+    },
+    methods : {
+      watchScroll : function(){
+        var csc = (this.$refs.infinity.scrollHeight - this.$refs.infinity.clientHeight) - this.$refs.infinity.scrollTop;
+        if(csc < parseInt(this.smidistance) && this.smicanload){
+          this.$emit('smiReady');
+        }
+      }
+    },
+    template: `<div ref="infinity" :style="styles" @scroll="watchScroll"><slot></slot></div>`
+})
+
+
+^^^ Add stuff in the slot pos
