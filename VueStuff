@@ -18,13 +18,14 @@ Vue.component('spacemoose-infinity', {
     methods : {
       watchScroll : function(){
         var csc = (this.$refs.infinity.scrollHeight - this.$refs.infinity.clientHeight) - this.$refs.infinity.scrollTop;
-        if(csc < parseInt(this.smidistance) && this.smicanload){
+        if(csc < parseInt(this.smidistance)){
           this.$emit('smiReady');
         }
       }
     },
     template: `<div ref="infinity" :style="styles" @scroll="watchScroll"><slot></slot></div>`
 })
+
 
 
 ^^^ Add stuff in the slot pos
