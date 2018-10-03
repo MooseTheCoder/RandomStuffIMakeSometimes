@@ -28,3 +28,17 @@ Vue.component('spacemoose-infinity', {
 
 
 ^^^ Add stuff in the slot pos
+        loadInfinityData : function(){
+            // Check if all the data is already loaded
+            if(this.infinityData.length != this.filteredObservations.length){
+                this.isInfinity=false;
+                for (var i = this.infinityStartIndex, j = this.infinityStartIndex+10; i < j; i++) {
+                    if(this.sortedObservations[i]){
+                        this.infinityData.push(this.sortedObservations[i]);
+                    }
+                this.infinityStartIndex++;
+                }
+            }
+            this.isInfinity=true;
+        },
+
