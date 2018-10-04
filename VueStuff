@@ -1,19 +1,32 @@
 // Space Moose --> Infinity Scroller for Vue
 Vue.component('spacemoose-infinity', {
     props : {
-      smiheight:{required : true},
-      smiwidth:{required : true},
-      smidistance:{required : true},
-      smicanload : {type : Boolean, required : true}
+      smiheight:{required : false},
+      smiwidth:{required : false},
+      smidistance:{required : false},
+      smiclass:{required : false},
+      smicanload : {type : Boolean, required : false}
     },
     data(){
       return {
         styles : {
-          width : this.smiwidth,
-          height : this.smiheight,
           overflowY : 'scroll'
-        }
+        },
+        cclass : ''
       }
+    },
+    created(){
+      // Create styles
+      if(this.smiwidth){
+        this.styles.width = this.smiwidth;
+      }
+      if(this.smiheight){
+        this.styles.height = this.smiheight;
+      }
+      if(this.smiclass){
+        this.cclass = this.smiclass;
+      }
+      
     },
     methods : {
       watchScroll : function(){
@@ -23,8 +36,9 @@ Vue.component('spacemoose-infinity', {
         }
       }
     },
-    template: `<div ref="infinity" :style="styles" @scroll="watchScroll"><slot></slot></div>`
+    template: `<div ref="infinity" :style="styles" @scroll="watchScroll" :class="cclass"><slot></slot></div>`
 })
+
 
 
 
