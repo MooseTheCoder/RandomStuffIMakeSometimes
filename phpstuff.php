@@ -24,3 +24,6 @@ function nav($role){
         $e.='</div>';
         return $e;
 }
+
+
+not php but its cool : .*(\.|\/)(?!php).*$
